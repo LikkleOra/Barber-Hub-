@@ -1,0 +1,177 @@
+## Product Requirements Document (PRD): BarberHub App
+
+- **Product Name**: BarberHub (working title; mobile-first app for barbers and similar service professionals to manage bookings, build communities, and leverage social proof)
+- **Version**: 1.0 (MVP)
+- **Author**: Grok (AI Assistant, based on user ideation)
+- **Date**: October 21, 2025
+- **Status**: Draft
+- **Stakeholders**: Product Owner (User/Founder), Barbers (Primary Users), Clients (End Users), Developers (Build Team)
+
+## 2. Overview
+
+### 2.1 Product Description
+BarberHub is a mobile/web app designed for barbers (and expandable to salons, tattoo artists, etc.) to create a branded mini-community for their clients. It integrates social media funnels for lead generation, seamless appointment booking, real-time communication, review collection, and content sharing. The app transforms fragmented tools like WhatsApp groups and TikTok posts into a unified platform, fostering loyalty and organic marketing through user-generated testimonials and before/after galleries.
+
+Unlike generic schedulers (e.g., Calendly), BarberHub emphasizes social integration and community building: Clients discover the barber via social links, book via personalized funnels, engage in a private hub, and share experiences that auto-feed back to public channels. This creates a viral loop—reviews boost trust, leading to more bookings.
+
+### 2.2 Target Audience
+- **Primary Users (Barbers/Service Pros)**: Independent barbers or small shops (1–5 staff) with active social media presence (TikTok, Instagram, WhatsApp). Pain points: manual scheduling chaos, lost leads from social DMs, difficulty collecting/sharing testimonials.
+- **Secondary Users (Clients)**: Local customers (18–45 years old, tech-savvy, social media active) seeking convenient booking and community vibes. They value quick access, personalized styles, and sharing their looks.
+- **Market Size**: Beauty/salon services market ~$500B globally (2024, Statista); barbers represent a niche with high social engagement (e.g., 1M+ TikTok videos tagged #BarberLife).
+
+### 2.3 Business Goals
+- **Bookings**: Increase barber bookings by 20–30% through streamlined funnels and reminders.
+- **Retention**: Boost client retention via community features (e.g., 40% repeat rate target).
+- **Revenue**: Freemium model (free basic; $10–20/month premium for analytics/advanced tools).
+- **Growth**: Achieve 100 active barbers in first 6 months via viral social sharing.
+- **Expansion**: Long-term expand to 5+ service niches; partner with influencers for scale.
+
+## 3. Objectives and Success Metrics
+
+### 3.1 Key Objectives
+- **Scheduling**: Reduce no-shows by 50% with automations.
+- **Social marketing**: Enable 80% of reviews to auto-share to TikTok/Instagram.
+- **Engagement**: Create sticky communities with 70% MAU per barber group.
+- **Ease-of-use**: Onboarding in <5 minutes; 90% user satisfaction (NPS > 7).
+
+### 3.2 Success Metrics (KPIs)
+
+| Metric | Target (MVP +3 months) | Measurement Tool |
+| --- | --- | --- |
+| Barber Sign-Ups | 100 active barbers | App dashboard |
+| Booking Conversion Rate | 20% (social link → booked appointment) | Analytics (e.g., Mixpanel) |
+| Client Retention | 40% repeat bookings within 30 days | User cohort analysis |
+| Review Completion Rate | 80% post-appointment | In-app surveys |
+| Revenue | $1K/month (from 50 premium users) | Stripe/payment logs |
+| Engagement | 70% MAU in communities; 15% share rate | App usage data |
+| Churn | <10% monthly for barbers | Retention reports |
+
+## 4. Features and Requirements
+
+Prioritized into MVP (Must-Have), Phase 1 (Should-Have), and Future (Could-Have). Focus on mobile-first (iOS/Android via React Native or no-code like Adalo).
+
+### 4.1 User Roles and Permissions
+- **Barber Admin**: Full access (manage bookings, community, analytics).
+- **Client Member**: View/book, post reviews/shares, chat in group.
+- **Guest**: Limited access via social links (view funnel, book without account).
+
+### 4.2 Core Features (MVP)
+
+#### 4.2.1 Social-Integrated Onboarding and Funnel
+- **Description**: Barbers link socials (TikTok, Instagram, WhatsApp) to create shareable booking links/QR codes. Clients enter via a marketing funnel (e.g., TikTok video → app landing → qualifying quiz → booking).
+- **Requirements**:
+  - Barber setup: One-tap social API integrations (e.g., Instagram Basic Display API).
+  - Funnel builder: Drag-and-drop templates (e.g., “Fade Special Promo” with video embed, style selector).
+  - Personalization: Auto-populate client preferences (e.g., “Preferred cut: High-top fade”).
+- **User Stories**:
+  - As a barber, I can create a TikTok bio link that directs to my custom booking page.
+  - As a client, I can book in three taps after seeing a promo video.
+- **Non-Functional**: Load time < 2s; mobile-optimized.
+
+#### 4.2.2 Appointment Booking and Tracking
+- **Description**: Calendar-based scheduling with real-time availability, integrated with barber’s Google/Apple Calendar.
+- **Requirements**:
+  - Availability sync: Block slots for walk-ins or vacations.
+  - Booking flow: Select service (e.g., haircut $30), time slot, add notes (e.g., “Bring photo ref”).
+  - Reminders: Push notifications/SMS 24h before; reschedule/cancel options.
+  - Payments: Optional Stripe integration for deposits (10% to reduce no-shows).
+- **User Stories**:
+  - As a client, I can view available slots and book instantly.
+  - As a barber, I can track upcoming appointments in a dashboard with client history.
+- **Non-Functional**: Conflict detection (no double-booking); offline booking queue.
+
+#### 4.2.3 Mini-Community Hub
+- **Description**: Private space for clients to communicate, share, and engage (like a branded WhatsApp group but structured).
+- **Requirements**:
+  - Group chat: Text, emojis, polls (e.g., “Vote on next style trend”).
+  - Gallery: Upload before/after photos; barber curates “Featured Looks.”
+  - Notifications: Alerts for new posts and appointment updates.
+- **User Stories**:
+  - As a client, I can join the barber’s community upon first booking and post my haircut pic.
+  - As a barber, I can moderate chats and highlight testimonials.
+- **Non-Functional**: End-to-end encryption; max 200 members/group to start.
+
+#### 4.2.4 Reviews and Testimonials
+- **Description**: Post-service feedback system that generates shareable content.
+- **Requirements**:
+  - Prompt: Auto-send review request 1h post-appointment (stars, text, photo).
+  - Sharing: One-tap export to TikTok/Instagram (e.g., “Loved my cut @BarberHub! #FadeFlow”).
+  - Moderation: Barber approves before public display; aggregate ratings on profile.
+- **User Stories**:
+  - As a client, I can leave a 5-star review with a selfie that auto-posts if approved.
+  - As a barber, I can showcase top reviews in my funnel to build trust.
+- **Non-Functional**: Spam filtering; GDPR-compliant data handling.
+
+### 4.3 Phase 1 Features (Post-MVP)
+- **Analytics dashboard**: Insights like “Top converting social channel” or “Peak booking times.”
+- **AI recommendations**: Suggest styles based on past reviews (e.g., “Try a taper—popular this month”).
+- **Multi-barber support**: For shops with teams.
+- **Integrations**: WhatsApp Business API for direct imports.
+
+### 4.4 Future Features
+- **Loyalty program**: Points for reviews/shares redeemable for discounts.
+- **Marketplace**: Barbers sell merch (e.g., pomade) via in-app store.
+- **Expansion**: Templates for non-barbers (e.g., nail salons).
+
+## 5. User Flows
+
+### 5.1 High-Level Client Journey
+1. Discovery: Client sees TikTok post → taps link → views promo funnel.
+2. Sign-Up/Booking: Creates quick profile → selects service/time → confirms (email/SMS).
+3. Engagement: Joins community → attends appointment → receives review prompt.
+4. Sharing: Uploads photo → shares to socials → loops back for repeats.
+
+### 5.2 Barber Onboarding Flow
+1. Sign up → Link socials/calendar.
+2. Customize funnel (e.g., add services/pricing).
+3. Invite clients (bulk import from WhatsApp).
+4. Monitor dashboard for bookings/reviews.
+
+> Visual wireframes recommended: Use Figma for a booking screen with calendar picker and a community feed akin to Instagram Stories.
+
+## 6. Technical Requirements
+
+- **Platform**: Mobile (iOS/Android) primary; responsive web secondary.
+- **Tech Stack**:
+  - Frontend: React Native or Flutter for cross-platform.
+  - Backend: Firebase/Node.js for auth and database (real-time for chats).
+  - Integrations: Google Calendar API, Stripe, Twilio (SMS), Meta APIs (social sharing).
+  - No-Code Alternative: Bubble/Adalo for MVP to reduce costs.
+- **Data Storage**: User profiles, bookings, media (photos < 5MB); anonymize for analytics.
+- **Scalability**: Handle 1K users initially; cloud hosting (AWS/GCP).
+- **Security**: OAuth for logins; HIPAA-lite for personal data (no health info stored).
+
+## 7. Non-Functional Requirements
+
+- **Performance**: 99% uptime; < 3s response times.
+- **Accessibility**: WCAG 2.1 compliant (e.g., voice-over for blind users).
+- **Localization**: English primary; Spanish add-on for diverse barbershops.
+- **Offline Support**: Cache bookings/chats; sync on reconnect.
+- **Compliance**: GDPR/CCPA for data privacy; PCI for payments.
+
+## 8. Assumptions and Dependencies
+
+- **Assumptions**: Barbers have smartphones; 70% of clients use social media daily. Social APIs remain free/stable.
+- **Dependencies**: Third-party services (e.g., Stripe approval); beta testers (10 barbers).
+- **Constraints**: MVP budget $5K–$10K; 3-month timeline. No custom AI in MVP (use off-the-shelf).
+
+## 9. Risks and Mitigations
+
+| Risk | Likelihood | Impact | Mitigation |
+| --- | --- | --- | --- |
+| Low adoption by barbers | Medium | High | Free trials + influencer partnerships; simple UX testing |
+| Social integration breaks | Low | Medium | Fallback to manual links; monitor API changes |
+| Data privacy issues | Medium | High | Legal review pre-launch; opt-in consents |
+| Competition from apps like Booksy | High | Medium | Niche focus on community/social; differentiate with viral sharing |
+| Feature creep | High | Low | Strict MVP scope; prioritize via user interviews |
+
+## 10. Timeline and Milestones
+
+- **Month 1**: Research, wireframing, validation (interviews/landing page).
+- **Months 2–3**: Build/test MVP (core features); beta with 5 barbers.
+- **Month 4**: Launch (App Store/Google Play); marketing push.
+- **Months 5–6**: Iterate based on metrics; add Phase 1 features.
+- **Resources Needed**: 1–2 developers (freelance), designer, $2K marketing budget.
+
+---
+This PRD provides a blueprint for development. Iterate based on feedback—start with user testing to refine. If you need appendices (e.g., detailed wireframes or cost estimates), add them as separate documents in the `docs/` folder.
